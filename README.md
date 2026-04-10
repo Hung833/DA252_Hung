@@ -41,6 +41,17 @@ DADN/
 ```
 ---
 
+## 📋 Bảng Đặc Tả Chi Tiết (Quy Tắc Code Theo Thư Mục)
+
+| 🎯 Tên Thư Mục | 📌 Vai Trò & Quy Tắc Code (Luật Thép) |
+| --- | --- |
+| **`src/screens/`** | 🎨 **Chỉ vẽ giao diện.** File trong này tuyệt đối không chứa các phép toán cộng trừ nhân chia hay IF/ELSE kiểm tra ngưỡng vật lý. Nó chỉ lấy dữ liệu từ store để in ra màn hình. |
+| **`src/store/`** | 🔄 **Trạm trung chuyển dữ liệu (Zustand).** Nơi chứa bộ nhớ tạm của App. Input người dùng gõ vào sẽ lưu ở đây. Các màn hình khác muốn lấy số liệu để tính toán phải truy cập vào file này. |
+| **`src/logic/`** | 🧠 **Bộ não tính toán cơ khí.** Chứa toàn bộ công thức đồ án (ví dụ: `tinhDongCo.ts`, `tinhBanhRang.ts`). Nhận đầu vào là số, nhổ đầu ra là số. File ở đây hoàn toàn độc lập về giao diện. |
+| **`src/database/`** | 📚 **Bách khoa toàn thư Local.** Chứa file `sqlite.db` hoặc `data_dongco.json`. Khi `src/logic/` cần tìm động cơ hợp lệ, nó sẽ truy vấn vào thư mục này để lấy dữ liệu (tốc độ < 1ms) mà không cần mạng. |
+
+---
+
 ## 📱 A. Thư mục `client/` (Frontend React Native & Expo)
 
 Giao diện ứng dụng Mobile tích hợp luôn bộ xử lý logic nghiệp vụ và cơ sở dữ liệu cục bộ (Local DB) để đảm bảo App có thể hoạt động 100% khi không có mạng. Quản lý trạng thái bằng Zustand. Hiện sử dụng Expo SDK 54.
