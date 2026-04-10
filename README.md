@@ -1,7 +1,44 @@
-# DA252_Hung
 # 📂 Kiến Trúc Dự Án (Hybrid / Offline-First Monorepo)
 
 Dự án được chia làm 2 phần chính: **Frontend (Client Mobile App)** đóng vai trò là não bộ tính toán chính (hỗ trợ Offline), và **Backend (Server)** đóng vai trò lưu trữ đồng bộ và xử lý AI.
+
+## 🌳 Cây Thư Mục Tổng Thể (Directory Tree)
+
+```
+DADN/
+│
+├── docs/                           # 📚 TÀI LIỆU DỰ ÁN (Mọi người đọc trước khi code)
+│   ├── 01_Architecture_Design.md   # Thiết kế kiến trúc Offline-First
+│   ├── 02_API_Contract.md          # Thỏa thuận cấu trúc JSON giữa FE & BE
+│   └── 03_Coding_Standard.md       # Quy tắc đặt tên biến (camelCase...)
+│
+├── server/                         # 🖥️ BACKEND (Node.js + MongoDB)
+│   ├── config/                     # File kết nối Database (db.js)
+│   ├── controllers/                # Xử lý logic API (Lưu lịch sử, Auth, AI Chatbot)
+│   ├── middlewares/                # Bộ lọc an ninh (Check Token, Error Handler)
+│   ├── models/                     # Schema Database trên mây (User, History)
+│   ├── routes/                     # Định tuyến API (auth.route, sync.route...)
+│   ├── .env                        # Biến môi trường (KHÔNG PUSH LÊN GITHUB)
+│   ├── .gitignore                  # Bỏ qua node_modules, .env
+│   ├── package.json
+│   └── server.js                   # Điểm khởi chạy Server
+│
+└── client/                         # 📱 FRONTEND (React Native/Expo) - Trái tim hệ thống
+    ├── assets/                     # Hình ảnh, Fonts, Icon
+    ├── src/
+    │   ├── components/             # UI Reusable (Nút bấm, Form, Dialog...)
+    │   ├── database/               # 📦 LỚP DATA: Chứa SQLite/JSON (Bảng tra ổ lăn, động cơ...)
+    │   ├── logic/                  # 🧠 LỚP NÃO: Các hàm toán học tính toán cơ khí (Offline)
+    │   ├── navigation/             # Điều hướng chuyển màn hình (React Navigation)
+    │   ├── screens/                # 🎨 LỚP UI: Giao diện màn hình (NhapLieu, DongCo, BanhRang)
+    │   ├── services/               # Cấu hình gọi API đồng bộ lên Backend (Axios/api.ts)
+    │   └── store/                  # 🔄 LỚP STATE: Quản lý biến toàn cục P, n, L (Zustand)
+    │
+    ├── App.js                      # Điểm khởi chạy App Mobile
+    ├── app.json                    # Cấu hình Expo
+    ├── package.json
+    └── .gitignore                  # Bỏ qua node_modules, build files
+---
 
 ## 📱 A. Thư mục `client/` (Frontend React Native & Expo)
 
@@ -43,41 +80,57 @@ Dự án áp dụng nguyên tắc **Local-Write, Cloud-Sync** (Lưu cục bộ t
 - App phát hiện có mạng → Gọi `api/v1/sync` trong thư mục `services/` → Gửi toàn bộ các dự án `is_synced = false` lên Backend → Backend lưu vào MongoDB và trả về HTTP 200 → Client chuyển cờ thành `is_synced = true`.
 
 ---
-## 🌳 Cây Thư Mục Tổng Thể (Directory Tree)
 
-```
-DADN/
-│
-├── docs/                           # 📚 TÀI LIỆU DỰ ÁN (Mọi người đọc trước khi code)
-│   ├── 01_Architecture_Design.md   # Thiết kế kiến trúc Offline-First
-│   ├── 02_API_Contract.md          # Thỏa thuận cấu trúc JSON giữa FE & BE
-│   └── 03_Coding_Standard.md       # Quy tắc đặt tên biến (camelCase...)
-│
-├── server/                         # 🖥️ BACKEND (Node.js + MongoDB)
-│   ├── config/                     # File kết nối Database (db.js)
-│   ├── controllers/                # Xử lý logic API (Lưu lịch sử, Auth, AI Chatbot)
-│   ├── middlewares/                # Bộ lọc an ninh (Check Token, Error Handler)
-│   ├── models/                     # Schema Database trên mây (User, History)
-│   ├── routes/                     # Định tuyến API (auth.route, sync.route...)
-│   ├── .env                        # Biến môi trường (KHÔNG PUSH LÊN GITHUB)
-│   ├── .gitignore                  # Bỏ qua node_modules, .env
-│   ├── package.json
-│   └── server.js                   # Điểm khởi chạy Server
-│
-└── client/                         # 📱 FRONTEND (React Native/Expo) - Trái tim hệ thống
-    ├── assets/                     # Hình ảnh, Fonts, Icon
-    ├── src/
-    │   ├── components/             # UI Reusable (Nút bấm, Form, Dialog...)
-    │   ├── database/               # 📦 LỚP DATA: Chứa SQLite/JSON (Bảng tra ổ lăn, động cơ...)
-    │   ├── logic/                  # 🧠 LỚP NÃO: Các hàm toán học tính toán cơ khí (Offline)
-    │   ├── navigation/             # Điều hướng chuyển màn hình (React Navigation)
-    │   ├── screens/                # 🎨 LỚP UI: Giao diện màn hình (NhapLieu, DongCo, BanhRang)
-    │   ├── services/               # Cấu hình gọi API đồng bộ lên Backend (Axios/api.ts)
-    │   └── store/                  # 🔄 LỚP STATE: Quản lý biến toàn cục P, n, L (Zustand)
-    │
-    ├── App.js                      # Điểm khởi chạy App Mobile
-    ├── app.json                    # Cấu hình Expo
-    ├── package.json
-    └── .gitignore                  # Bỏ qua node_modules, build files
-```
+## 🏗️ 4. Kiến Trúc Ứng Dụng (4-Layer Architecture)
 
+Dự án áp dụng kiến trúc **4 lớp** để tách biệt rõ ràng các trách nhiệm, dễ bảo trì và mở rộng.
+
+### 🎨 LỚP 1: UI / PRESENTATION LAYER (Giao diện hiển thị)
+
+#### Nhiệm vụ
+Chỉ chứa các nút bấm, ô nhập liệu, biểu đồ. **Tuyệt đối KHÔNG chứa công thức tính toán.**
+
+#### Cấu trúc
+- **Screen_NhapLieu**: Giao diện cho Module 1.
+- **Screen_TinhDongCo**: Giao diện cho Module 2.
+- **Screen_TinhBanhRang**: Giao diện cho Module 3.
+- **Screen_Dashboard**: Màn hình vẽ biểu đồ tổng kết và nút xuất PDF.
+
+---
+
+### 🔄 LỚP 2: STATE MANAGEMENT LAYER (Trạm trung chuyển dữ liệu)
+
+#### Nhiệm vụ
+Lưu trữ dữ liệu tạm thời (Input của người dùng và Output của các công thức) trong lúc App đang mở. Đây chính là cái "file khác" mà em nhắc tới.
+
+#### Cấu trúc (Dùng Zustand hoặc Redux)
+- `store/projectState.js`: Chứa biến `input_data` (P, n, L) và `calculated_results` (Động cơ, Đai, Bánh răng). Mọi màn hình ở Lớp 1 đều gửi và lấy dữ liệu từ trạm này.
+
+---
+
+### 🧠 LỚP 3: BUSINESS LOGIC LAYER (Bộ não tính toán)
+
+#### Nhiệm vụ
+Chứa các file toán học, công thức cơ lý thuyết. Nhận số từ Lớp 2, tính toán, và trả kết quả lại cho Lớp 2.
+
+#### Cấu trúc
+- `utils/validation.js`: Hàm kiểm tra P, n, L có hợp lệ không.
+- `utils/calc_motor.js`: Chứa công thức tính công suất cần thiết, phân phối tỉ số truyền.
+- `utils/calc_gear.js`: Chứa công thức tính module, số răng bánh răng.
+
+---
+
+### 📦 LỚP 4: DATA & NETWORK LAYER (Lưu trữ và Đồng bộ)
+
+#### Nhiệm vụ
+Quản lý Database offline trên máy và gọi API lên Server.
+
+#### Cấu trúc (Frontend)
+- `database/sqlite_local.js`: Kết nối database bảng tra cơ khí trên máy tính/điện thoại.
+- `services/api_sync.js`: Hàm quét các dự án đã xong để gửi lên Server.
+
+#### Cấu trúc (Backend - Server)
+- `NodeJS_Server/routes`: Hứng API từ FE.
+- `NodeJS_Server/controllers`: Xử lý lưu lịch sử vào MongoDB/PostgreSQL, kết nối Chatbot Gemini.
+
+> *Với cấu trúc này, sau này anh em muốn mở rộng ra làm Web, anh em chỉ cần giữ nguyên Lớp 2, Lớp 3, Lớp 4. Và chỉ việc code lại Lớp 1 thôi!*
