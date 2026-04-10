@@ -45,6 +45,7 @@ Dự án áp dụng nguyên tắc **Local-Write, Cloud-Sync** (Lưu cục bộ t
 ---
 ## 🌳 Cây Thư Mục Tổng Thể (Directory Tree)
 
+```
 DADN/
 │
 ├── docs/                           # 📚 TÀI LIỆU DỰ ÁN (Mọi người đọc trước khi code)
@@ -78,3 +79,5 @@ DADN/
     ├── app.json                    # Cấu hình Expo
     ├── package.json
     └── .gitignore                  # Bỏ qua node_modules, build files
+```
+
