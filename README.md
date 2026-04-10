@@ -38,6 +38,7 @@ DADN/
     ├── app.json                    # Cấu hình Expo
     ├── package.json
     └── .gitignore                  # Bỏ qua node_modules, build files
+```
 ---
 
 ## 📱 A. Thư mục `client/` (Frontend React Native & Expo)
