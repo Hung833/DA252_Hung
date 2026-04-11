@@ -47,8 +47,9 @@ Frontend sẽ gom các dữ liệu đã tính toán thành công để bắn lê
     "total_ratio": 15.3
   }
 }
+```
 
-####2. Response Payload (Backend trả về cho Frontend)
+#### 2. Response Payload (Backend trả về cho Frontend)
 **Trường hợp 1:** Đồng bộ thành công (Happy Path)
 Backend ghi vào MongoDB thành công. Frontend nhận được mã này sẽ cập nhật trạng thái đã lưu trên máy.
 
