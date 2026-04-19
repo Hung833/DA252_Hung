@@ -4,7 +4,7 @@ Dự án được chia làm 2 phần chính: **Frontend (Client Mobile App)** đ
 
 ## 🌳 Cây Thư Mục Tổng Thể (Directory Tree)
 
-```
+```text
 DADN/
 │
 ├── docs/                           # 📚 TÀI LIỆU DỰ ÁN (Mọi người đọc trước khi code)
@@ -38,7 +38,10 @@ DADN/
     ├── app.json                    # Cấu hình Expo
     ├── package.json
     └── .gitignore                  # Bỏ qua node_modules, build files
+```text
+    └── .gitignore                  # Bỏ qua node_modules, build files
 ```
+
 ---
 
 ## 📋 Bảng Đặc Tả Chi Tiết (Quy Tắc Code Theo Thư Mục)
@@ -60,7 +63,7 @@ Giao diện ứng dụng Mobile tích hợp luôn bộ xử lý logic nghiệp v
 - `src/components/`: Các UI components dùng chung (button, input form, popup...).
 - `src/screens/`: Các màn hình chính (Login, Nhập liệu, Tính toán động cơ, Lịch sử...).
 - `src/navigation/`: Cấu hình chuyển trang (Navigators).
-- `src/store/`: Quản lý biến dữ liệu toàn cục (Zustand) - Lưu trữ input (P, n, L) và kết quả tính toán tạm thời.
+- `src/store/`: Quản lý biến dữ liệu toàn cục (Zustand) - Lưu trữ input ($P, n, L$) và kết quả tính toán tạm thời.
 - `src/logic/` (MỚI 🚀): Chứa toàn bộ công thức tính toán cơ khí cốt lõi (Động cơ, Bánh răng, Đai). Tách biệt hoàn toàn khỏi UI để dễ dàng tái sử dụng.
 - `src/database/` (MỚI 🚀): Chứa Local DB (SQLite / file JSON) lưu trữ các Bảng tra cơ lý thuyết (danh mục động cơ, tiêu chuẩn ổ lăn). Giúp truy vấn tức thời không cần gọi API.
 - `src/services/`: Cài đặt `api.ts` dùng Axios để gọi API đồng bộ lên Backend khi có mạng.
@@ -113,7 +116,7 @@ Chỉ chứa các nút bấm, ô nhập liệu, biểu đồ. **Tuyệt đối K
 ### 🔄 LỚP 2: STATE MANAGEMENT LAYER (Trạm trung chuyển dữ liệu)
 
 #### Nhiệm vụ
-Lưu trữ dữ liệu tạm thời (Input của người dùng và Output của các công thức) trong lúc App đang mở. 
+Lưu trữ dữ liệu tạm thời (Input của người dùng và Output của các công thức) trong lúc App đang mở. Đây chính là cái "file khác" mà em nhắc tới.
 
 #### Cấu trúc (Dùng Zustand hoặc Redux)
 - `store/projectState.js`: Chứa biến `input_data` (P, n, L) và `calculated_results` (Động cơ, Đai, Bánh răng). Mọi màn hình ở Lớp 1 đều gửi và lấy dữ liệu từ trạm này.
