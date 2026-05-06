@@ -19,10 +19,11 @@ export const sendChatMessage = async (message: string) => {
 ### 2. Thiết kế Giao diện Chatbot (Chat UI)
 * **File:** client/src/screens/ChatbotScreen.jsx
 * **Nhiệm vụ:** Tạo giao diện nhắn tin (tương tự Messenger/Zalo) và quản lý State của lịch sử trò chuyện.
-* **💡 Cấu trúc Logic tham khảo:**
+  
+**💡 Cấu trúc Logic tham khảo:**
 
-  ```JavaScript
-  import React, { useState } from 'react';
+```JavaScript
+import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { sendChatMessage } from '../services/chatApi';
 
@@ -72,4 +73,4 @@ const ChatbotScreen = () => {
 };
 
 export default ChatbotScreen;
-```
+  ```
